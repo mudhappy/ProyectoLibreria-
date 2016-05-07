@@ -10,11 +10,11 @@ public class SenorSmService {
   public SenorSmService() {
     dao = new SenorSmDao();
   }
-  public void addCategoria(int codigo,String nombre){
-    dao.addCategoria(codigo,nombre);
+  public void addCategoria(String nombre){
+    dao.addCategoria(nombre);
   }
-  public void addMarca(int codigo,String nombre){
-    dao.addMarca(codigo, nombre);
+  public void addMarca(String nombre){
+    dao.addMarca( nombre);
   }
   public void addProducto(int idcat,int idmar,String nombre, double precio, int stock){
     dao.addProducto(idcat, idmar, nombre, precio, stock);

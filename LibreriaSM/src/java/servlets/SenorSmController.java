@@ -72,10 +72,9 @@ public class SenorSmController extends HttpServlet {
     private void addCategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
       // Datos
-      int codigo=Integer.parseInt(request.getParameter("codigo"));
       String nombre = request.getParameter("nombre");
       // Proceso
-      es.addCategoria(codigo,nombre);
+      es.addCategoria(nombre);
       // Salida
       request.setAttribute("msg", "Proceso ok.");
     } catch (Exception e) {
@@ -91,10 +90,9 @@ public class SenorSmController extends HttpServlet {
     private void addMarca(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        try {
       // Datos
-      int codigo=Integer.parseInt(request.getParameter("codigo"));
       String nombre = request.getParameter("nombre");
       // Proceso
-      es.addMarca(codigo,nombre);
+      es.addMarca(nombre);
       // Salida
       request.setAttribute("msg", "Proceso ok.");
     } catch (Exception e) {
@@ -116,9 +114,9 @@ public class SenorSmController extends HttpServlet {
             
             
              MarcaDao LMarca = new MarcaDao();
-            List<MarcaBean> listaM = new ArrayList<MarcaBean>();
-            listaM = LMarca.listar();
-            request.setAttribute("listaMarca", listaM);
+            List<MarcaBean> listaMarca = new ArrayList<MarcaBean>();
+            listaMarca = LMarca.listar();
+            request.setAttribute("listaMarca", listaMarca);
             
             
             request.getRequestDispatcher("articulo.jsp").forward(request, response);

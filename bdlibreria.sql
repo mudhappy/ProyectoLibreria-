@@ -1,6 +1,4 @@
--- =============================================
--- Creación de la Base de Datos
--- =============================================
+
 
 DROP DATABASE IF EXISTS SenorSM;
 
@@ -15,14 +13,12 @@ USE SenorSM;
 
 
 -- =============================================
--- CREACION DE TABLAS DE EMPLEADOS
+-- CREACION DE TABLAS DE USUARIOS
 -- =============================================
 CREATE TABLE CARGO
 (
 	idcar                INTEGER AUTO_INCREMENT COMMENT 'Identificador del cargo del empleado.',
 	nombre               VARCHAR(50) NOT NULL COMMENT 'Nombre del cargo del empleado.',
-    sueldomin			 NUMERIC(6)  NULL COMMENT 'sueldo minimo del empleado.',
-	sueldomax      	 	 NUMERIC(6) NULL COMMENT 'sueldo maximo del empleado.',
 	PRIMARY KEY (idcar)
 ) COMMENT='Tabla de cargo de empleados.';
 
@@ -38,6 +34,9 @@ CREATE TABLE EMPLEADO
     email                VARCHAR(50) NOT NULL COMMENT 'Email del empleado.',
 	telefono             VARCHAR(20) NULL COMMENT 'Teléfono del empleado.',
     celular              VARCHAR(15) NULL COMMENT 'celular del empleado.',
+	usuario              VARCHAR(20) NOT NULL COMMENT 'Cuenta de usuario asociado al empleado.',
+	clave                VARCHAR(40) NOT NULL COMMENT 'Clave del usuario.',
+	estado               INTEGER NOT NULL COMMENT 'Estado del usuario: 1 - Activo 0 - Inactivo',
 	PRIMARY KEY (idemp),
     FOREIGN KEY fk_cargo_empleado (idcar) REFERENCES CARGO (idcar)
 ) COMMENT='Tabla de empleados.';
@@ -53,36 +52,13 @@ CREATE TABLE CLIENTE
     email                VARCHAR(50) NOT NULL COMMENT 'Email del cliente.',
 	telefono             VARCHAR(20) NULL COMMENT 'Teléfono del cliente.',
     celular              VARCHAR(15) NULL COMMENT 'celular del cliente.',
+	usuario              VARCHAR(20) NOT NULL COMMENT 'Cuenta de usuario asociado al cliente.',
+	clave                VARCHAR(40) NOT NULL COMMENT 'Clave del usuario.',
+	estado               INTEGER NOT NULL COMMENT 'Estado del usuario: 1 - Activo 0 - Inactivo',
 	PRIMARY KEY (idclie)
 ) COMMENT='Tabla de clientes.';
 
 
--- =============================================
--- CREACION DE TABLAS DEL USUARIOS
--- =============================================
-
-CREATE TABLE USUARIOEMP
-(
-	idemp                INTEGER NOT NULL COMMENT 'Identificador del empleado.',
-	usuario              VARCHAR(20) NOT NULL COMMENT 'Cuenta de usuario asociado al empleado.',
-	clave                VARCHAR(40) NOT NULL COMMENT 'Clave del usuario.',
-	estado               NUMERIC(2,0) NOT NULL COMMENT 'Estado del usuario: 1 - Activo 0 - Inactivo',
-	PRIMARY KEY (idemp),
-	CONSTRAINT CHK_USUARIO_ESTADO CHECK ( estado IN (1, 0) ),
-	FOREIGN KEY fk_usuario_empleado (idemp) REFERENCES EMPLEADO (idemp)
-) COMMENT='Tabla de usuarios de empleados.';
-
-
-CREATE TABLE USUARIOCLIE
-(
-	idclie               INTEGER NOT NULL COMMENT 'Identificador del cliente.',
-	usuario              VARCHAR(20) NOT NULL COMMENT 'Cuenta de usuario asociado al cliente.',
-	clave                VARCHAR(40) NOT NULL COMMENT 'Clave del usuario.',
-	estado               NUMERIC(2,0) NOT NULL COMMENT 'Estado del usuario: 1 - Activo 0 - Inactivo',
-	PRIMARY KEY (idclie),
-	CONSTRAINT CHK_USUARIO_ESTADO CHECK ( estado IN (1, 0) ),
-	FOREIGN KEY fk_usuario_cliente (idclie) REFERENCES CLIENTE (idclie)
-) COMMENT='Tabla de usuarios de clientes.';
 -- =============================================
 -- CREACION DE TABLAS DEL CATALOGO
 -- =============================================
@@ -90,14 +66,14 @@ CREATE TABLE USUARIOCLIE
 
 CREATE TABLE CATEGORIA
 (
-	idcat                INTEGER NOT NULL     COMMENT 'Identificador de categoría.',
+	idcat                INTEGER AUTO_INCREMENT    COMMENT 'Identificador de categoría.',
 	nombre               VARCHAR(50) NOT NULL COMMENT 'Nombre de categoría.',
 	PRIMARY KEY (idcat)
 ) COMMENT='Tabla de categorías.';
 
 CREATE TABLE MARCA
 (
-	idmar                INTEGER NOT NULL     COMMENT 'Identificador de marca.',
+	idmar                INTEGER AUTO_INCREMENT     COMMENT 'Identificador de marca.',
 	nombre               VARCHAR(50) NOT NULL COMMENT 'Nombre de marca.',
 	PRIMARY KEY (idmar)
 ) COMMENT='Tabla de marcas.';
@@ -129,8 +105,8 @@ CREATE TABLE VENTA
 	fecha                DATE NOT NULL COMMENT 'Fecha de venta.',
 	importe              NUMERIC(10,2) NOT NULL COMMENT 'Importe de la venta.',
 	PRIMARY KEY (idventa),
-	FOREIGN KEY FK_VENTA_USUARIOEMP (idemp) REFERENCES USUARIOEMP (idemp),
-    FOREIGN KEY FK_VENTA_USUARIOCLIE (idclie) REFERENCES USUARIOCLIE (idclie)
+	FOREIGN KEY FK_VENTA_USUARIOEMP (idemp) REFERENCES EMPLEADO (idemp),
+    FOREIGN KEY FK_VENTA_USUARIOCLIE (idclie) REFERENCES CLIENTE (idclie)
 ) COMMENT='Tabla de ventas.';
 
 CREATE TABLE DETALLE
@@ -159,7 +135,7 @@ CREATE UNIQUE INDEX U_DETALLE ON DETALLE
 
 CREATE TABLE TIPO_PAGO
 (
-	idtipo               INTEGER NOT NULL     COMMENT 'Identificador del tipo de pago.',
+	idtipo               INTEGER AUTO_INCREMENT    COMMENT 'Identificador del tipo de pago.',
 	nombre               VARCHAR(50) NOT NULL COMMENT 'Nombre del tipo de pago.',
 	PRIMARY KEY (idtipo)
 ) COMMENT='Tabla de tipos de pago.';

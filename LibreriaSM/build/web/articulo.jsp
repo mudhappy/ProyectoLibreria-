@@ -20,23 +20,57 @@
     <form method="post" action="AddCategoria">
       <fieldset>
           <legend>Nueva Categoria</legend>
-                <p>Codigo Categoria: <input type="text" name="codigo"/></p>
                 <p>Nombre Categoria: <input type="text" name="nombre"/></p>
                 <input type="submit" value="Procesar"/>
+                <br><br>
+                <table border="1">                        
+                    <thead>
+                        <tr>
+                            <th>Id Categoria</th>
+                            <th>Nombre Categoria</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="r" items="${listaCategoria}">
+                            <tr>
+                                <td>${r.idcat}</td>
+                                <td>${r.nombre}</td>                                                                            
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
       </fieldset>
     </form>
-    <form method="post" action="AddMarca">
+    <form method="post" action="AddMarca">   
       <fieldset>
           <legend>Nueva Marca</legend>
-                <p>Codigo Marca: <input type="text" name="codigo"/></p>
                 <p>Nombre Marca: <input type="text" name="nombre"/></p>
                 <input type="submit" value="Procesar"/>
+                <br><br>
+                <table border="1">                        
+                    <thead>
+                        <tr>
+                            <th>Id Marca</th>
+                            <th>Nombre Marca</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="v" items="${listaMarca}">
+                            <tr>
+                                <td>${v.idmar}</td>
+                                <td>${v.nombre}</td>                                                                            
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
       </fieldset>
     </form>
     <form method="post" action="AddProducto">
       <fieldset>
           <legend>Nuevo Articulo</legend>  
-                <p>Categoria: <input type="text" name="idcat"/></p>
+                
                 
                  <label for="txtCategoria">Categoria:</label>
                     <select name="cboListaCategoria" id="cboListaCategoria">
@@ -45,11 +79,7 @@
                                  <option value="${var.idcat}">${var.nombre}</option>
                              </c:forEach>
                     </select>                            
-                    
-                
-                <p>Marca: <input type="text" name="idmar"/></p>
-                
-                
+                 <br><br>
                 <label for="txtMarca">Categoria:</label>
                     <select name="cboListaMarca" id="cboListaMarca">
                         <option value="">Seleccione Marca</option>
@@ -64,28 +94,7 @@
                 <p>Stock: <input type="text" name="stock"/></p>
                
                 <input type="submit" value="Procesar"/>
-      </fieldset>
-                             
-            <table border="1">                        
-                    <thead>
-                        <tr>
-                            <th>IdCat</th>
-                            <th>NombreCat</th>
-                           
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="r" items="${listaCategoria}">
-                            <tr>
-                                <td>${r.idcat}</td>
-                                <td>${r.nombre}</td>                                                                            
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-      
-      
-                        
+      </fieldset>           
     </form>
     </body>
 </html>
