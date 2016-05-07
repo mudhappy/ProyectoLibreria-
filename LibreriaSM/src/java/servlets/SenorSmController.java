@@ -15,9 +15,11 @@ import service.SenorSmService;
 import model.CategoriaBean;
 import dao.CategoriaDao;
 import dao.MarcaDao;
+import dao.ProductoDao;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpSession;
 import model.MarcaBean;
+import model.ProductoBean;
 
 
 @WebServlet({"/AddProducto","/AddCategoria","/AddMarca","/Usuario","/Main"})
@@ -57,6 +59,7 @@ public class SenorSmController extends HttpServlet {
       int stock = Integer.parseInt(request.getParameter("stock"));
       // Proceso
       es.addProducto(idcat, idcar, nombre, precio, stock);
+      Listado(request, response);
       // Salida
       request.setAttribute("msg", "Proceso ok.");
     } catch (Exception e) {
@@ -71,10 +74,12 @@ public class SenorSmController extends HttpServlet {
 
     private void addCategoria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            
       // Datos
       String nombre = request.getParameter("nombre");
       // Proceso
       es.addCategoria(nombre);
+      Listado(request, response);
       // Salida
       request.setAttribute("msg", "Proceso ok.");
     } catch (Exception e) {
@@ -93,6 +98,7 @@ public class SenorSmController extends HttpServlet {
       String nombre = request.getParameter("nombre");
       // Proceso
       es.addMarca(nombre);
+      Listado(request, response);
       // Salida
       request.setAttribute("msg", "Proceso ok.");
     } catch (Exception e) {
@@ -107,17 +113,21 @@ public class SenorSmController extends HttpServlet {
     
     private void Listado(HttpServletRequest request, HttpServletResponse response){
        try {
+           
             CategoriaDao tcDao = new CategoriaDao();
             List<CategoriaBean> listaCategoria = new ArrayList<CategoriaBean>();
             listaCategoria = tcDao.listar();
             request.setAttribute("listaCategoria", listaCategoria);
             
-            
-             MarcaDao LMarca = new MarcaDao();
+            MarcaDao LMarca = new MarcaDao();
             List<MarcaBean> listaMarca = new ArrayList<MarcaBean>();
             listaMarca = LMarca.listar();
             request.setAttribute("listaMarca", listaMarca);
             
+            ProductoDao LProducto= new ProductoDao();
+            List<ProductoBean> listaProducto = new ArrayList<ProductoBean>();
+            listaProducto = LProducto.listar();
+            request.setAttribute("listaProducto", listaProducto);
             
             request.getRequestDispatcher("articulo.jsp").forward(request, response);
         } catch (Exception e) {

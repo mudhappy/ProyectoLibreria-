@@ -73,15 +73,15 @@
                 
                 
                  <label for="txtCategoria">Categoria:</label>
-                    <select name="cboListaCategoria" id="cboListaCategoria">
+                    <select name="idcat" id="cboListaCategoria">
                         <option value="">Seleccione Categoria</option>
                              <c:forEach var="var" items="${listaCategoria}">
                                  <option value="${var.idcat}">${var.nombre}</option>
                              </c:forEach>
-                    </select>                            
+                    </select>
                  <br><br>
                 <label for="txtMarca">Categoria:</label>
-                    <select name="cboListaMarca" id="cboListaMarca">
+                    <select name="idmar" id="cboListaMarca">
                         <option value="">Seleccione Marca</option>
                              <c:forEach var="var" items="${listaMarca}">
                                  <option value="${var.idmar}">${var.nombre}</option>
@@ -94,6 +94,31 @@
                 <p>Stock: <input type="text" name="stock"/></p>
                
                 <input type="submit" value="Procesar"/>
+                <br><br>
+                <table border="1">                        
+                    <thead>
+                        <tr>
+                            <th>Id Producto</th>
+                            <th>Id Categoria</th>
+                            <th>Id Marca</th>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="u" items="${listaProducto}">
+                            <tr>
+                                <td>${u.idprod}</td>
+                                <td>${u.idcat}</td>
+                                <td>${u.idmar}</td>
+                                <td>${u.nombre}</td>
+                                <td>${u.precio}</td>
+                                <td>${u.stock}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
       </fieldset>           
     </form>
     </body>
