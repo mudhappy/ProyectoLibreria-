@@ -1,14 +1,14 @@
 package service;
 
-import dao.SenorSmDao;
+import dao.InsertDao;
 
 
 public class SenorSmService {
 
-  private SenorSmDao dao;
+  private InsertDao dao;
 
   public SenorSmService() {
-    dao = new SenorSmDao();
+    dao = new InsertDao();
   }
   public void addCategoria(String nombre){
     dao.addCategoria(nombre);

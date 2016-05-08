@@ -13,13 +13,13 @@
         <title>Registro Articulos</title>
     </head>
     <body>
-        <h1>Insertar Articulo</h1>
-    <p>${msg}</p>
-    <p>${error}</p>
-    
-    <form method="post" action="AddCategoria">
-      <fieldset>
-          <legend>Nueva Categoria</legend>
+        <h1>Registro Articulo</h1>
+        <p>${msg}</p>
+        <p>${error}</p>
+
+        <form method="post" action="AddCategoria">
+            <fieldset>
+                <legend>Nueva Categoria</legend>
                 <p>Nombre Categoria: <input type="text" name="nombre"/></p>
                 <input type="submit" value="Procesar"/>
                 <br><br>
@@ -28,7 +28,7 @@
                         <tr>
                             <th>Id Categoria</th>
                             <th>Nombre Categoria</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
@@ -40,11 +40,11 @@
                         </c:forEach>
                     </tbody>
                 </table>
-      </fieldset>
-    </form>
-    <form method="post" action="AddMarca">   
-      <fieldset>
-          <legend>Nueva Marca</legend>
+            </fieldset>
+        </form>
+        <form method="post" action="AddMarca">   
+            <fieldset>
+                <legend>Nueva Marca</legend>
                 <p>Nombre Marca: <input type="text" name="nombre"/></p>
                 <input type="submit" value="Procesar"/>
                 <br><br>
@@ -53,7 +53,7 @@
                         <tr>
                             <th>Id Marca</th>
                             <th>Nombre Marca</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
@@ -65,34 +65,34 @@
                         </c:forEach>
                     </tbody>
                 </table>
-      </fieldset>
-    </form>
-    <form method="post" action="AddProducto">
-      <fieldset>
-          <legend>Nuevo Articulo</legend>  
-                
-                
-                 <label for="txtCategoria">Categoria:</label>
-                    <select name="idcat" id="cboListaCategoria">
-                        <option value="">Seleccione Categoria</option>
-                             <c:forEach var="var" items="${listaCategoria}">
-                                 <option value="${var.idcat}">${var.nombre}</option>
-                             </c:forEach>
-                    </select>
-                 <br><br>
+            </fieldset>
+        </form>
+        <form method="post" action="AddProducto">
+            <fieldset>
+                <legend>Nuevo Articulo</legend>  
+
+
+                <label for="txtCategoria">Categoria:</label>
+                <select name="idcat" id="cboListaCategoria">
+                    <option value="">Seleccione Categoria</option>
+                    <c:forEach var="var" items="${listaCategoria}">
+                        <option value="${var.idcat}">${var.nombre}</option>
+                    </c:forEach>
+                </select>
+                <br><br>
                 <label for="txtMarca">Categoria:</label>
-                    <select name="idmar" id="cboListaMarca">
-                        <option value="">Seleccione Marca</option>
-                             <c:forEach var="var" items="${listaMarca}">
-                                 <option value="${var.idmar}">${var.nombre}</option>
-                             </c:forEach>
-                    </select>  
-                
-                
+                <select name="idmar" id="cboListaMarca">
+                    <option value="">Seleccione Marca</option>
+                    <c:forEach var="var" items="${listaMarca}">
+                        <option value="${var.idmar}">${var.nombre}</option>
+                    </c:forEach>
+                </select>  
+
+
                 <p>Nombre: <input type="text" name="nombre"/></p>
                 <p>Precio: <input type="text" name="precio"/></p>
                 <p>Stock: <input type="text" name="stock"/></p>
-               
+
                 <input type="submit" value="Procesar"/>
                 <br><br>
                 <table border="1">                        
@@ -119,7 +119,7 @@
                         </c:forEach>
                     </tbody>
                 </table>
-      </fieldset>           
-    </form>
+            </fieldset>           
+        </form>
     </body>
 </html>
