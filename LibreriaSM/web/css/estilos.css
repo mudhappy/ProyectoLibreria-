@@ -1,0 +1,49 @@
+.mi-header
+{
+	background: #263238;
+}
+
+.btn-atras
+{
+	position: absolute;
+	margin-left:-50px;
+	margin-top: 15px;
+}
+
+.menu-tabla a
+{
+	width: 100%;
+}
+
+.contenido-tabla
+{
+	padding-left: 100px;
+}
+
+.menu-tabla a
+{
+	text-align: left;
+}
+
+.menu-tabla .is-active
+{
+}
+.contenido-tabla table
+{
+    margin-left: 100px;
+}
+.contenido-tabla table,.contenido-tabla form
+{
+	display: inline-block;
+	vertical-align: top;
+	margin-bottom: 20px;
+}
+
+.titulo-configuracion
+{
+    color: #45B2A8;
+    font-size: 12px;
+    margin: 0;
+    border-bottom: 1px solid #45B2A8;
+    margin-bottom: 30px;
+}
